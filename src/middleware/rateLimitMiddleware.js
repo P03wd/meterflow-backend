@@ -1,5 +1,5 @@
 import redis from "../config/redis.js";
-import ApiKey from "../models/apikey.js";
+import ApiKey from "../models/apiKey.js"; 
 
 const rateLimitMiddleware = async (req, res, next) => {
   try {

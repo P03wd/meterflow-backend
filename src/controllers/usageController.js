@@ -1,4 +1,4 @@
-import Usage from "../models/Usage.js";
+import Usage from "../models/usage.js";
 
 const getUsageStats = async (req, res) => {
   try {

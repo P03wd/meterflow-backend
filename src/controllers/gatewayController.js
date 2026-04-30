@@ -1,6 +1,6 @@
 import axios from "axios";
 import Api from "../models/api.js";
-import UsageLog from "../models/UsageLog.js";
+import UsageLog from "../models/usageLog.js";
 
 export const proxyRequest = async (req, res) => {
   try {
