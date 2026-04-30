@@ -1,4 +1,4 @@
-import Api from "../models/Api.js";
+import Api from "../models/api.js";
 import crypto from "crypto";
 
 // Create API
