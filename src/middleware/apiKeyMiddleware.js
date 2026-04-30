@@ -1,4 +1,4 @@
-import ApiKey from "../models/apikey.js";
+import ApiKey from "../models/apiKey.js";
 
 const apiKeyMiddleware = async (req, res, next) => {
   try {
