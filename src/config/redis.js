@@ -1,16 +1,19 @@
 import Redis from "ioredis";
 
-const redis = new Redis({
-  host: "127.0.0.1",
-  port: 6379
-});
+let redis;
 
-redis.on("connect", () => {
-  console.log("Redis connected");
-});
+if (process.env.REDIS_URL) {
+  redis = new Redis(process.env.REDIS_URL);
 
-redis.on("error", (err) => {
-  console.log("Redis error:", err);
-});
+  redis.on("connect", () => {
+    console.log("Redis connected");
+  });
+
+  redis.on("error", (err) => {
+    console.log("Redis error:", err);
+  });
+} else {
+  console.log("Redis disabled (no REDIS_URL)");
+}
 
 export default redis;
