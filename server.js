@@ -22,7 +22,7 @@ app.use(express.json());
 app.use(cors({
   origin: [
     "http://localhost:3000",
-    "https://your-frontend.vercel.app" // 🔁 replace with your real Vercel URL
+    "https://meterflow-frontend-gules.vercel.app" // 🔁 replace with your real Vercel URL
   ],
   credentials: true
 }));
