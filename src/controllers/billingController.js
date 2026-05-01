@@ -12,9 +12,8 @@ export const getBilling = async (req, res) => {
     startOfMonth.setHours(0, 0, 0, 0);
 
     const usageCount = await Usage.countDocuments({
-      apiKey,
-      timestamp: { $gte: startOfMonth }
-    });
+  apiKey
+});
 
     const FREE_LIMIT = 1000;
     const COST_PER_REQUEST = 0.01;
