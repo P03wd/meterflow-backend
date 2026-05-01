@@ -10,18 +10,18 @@ import apiKeyMiddleware from "../middleware/apiKeyMiddleware.js";
 
 const router = express.Router();
 
-// 🔐 JWT ONLY for API KEY creation
+// 🔐 AUTH ONLY
 router.post("/create-key", authMiddleware, createApiKey);
 
-// ✅ 🔥 USAGE (NO RATE LIMIT — IMPORTANT)
-router.get("/usage", apiKeyMiddleware, getUsageStats);
+// 🔓 PUBLIC USAGE
+router.get("/usage", getUsageStats);
 
-// 🔥 APPLY MIDDLEWARE ONLY AFTER USAGE
-router.use(apiKeyMiddleware);       // 1️⃣ validate API key
-router.use(rateLimitMiddleware);   // 2️⃣ rate limit
-router.use(usageMiddleware);       // 3️⃣ track usage
+// 🔥 PROTECTED ROUTES START HERE
+router.use(apiKeyMiddleware);
+router.use(rateLimitMiddleware);
+router.use(usageMiddleware);
 
-// 🔥 MAIN API (RATE LIMITED)
+// 🔥 MAIN API
 router.get("/pokemon/:name", getPokemon);
 
 export default router;

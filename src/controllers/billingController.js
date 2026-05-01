@@ -1,13 +1,12 @@
 import Usage from "../models/usage.js";
 import Billing from "../models/billing.js";
 
-// 🔥 GET BILLING (AUTO CALCULATED)
 export const getBilling = async (req, res) => {
   try {
     const apiKey = req.headers["x-api-key"];
     const userId = req.user.id;
 
-    // ✅ STEP 1: Monthly filter
+    // ✅ FIX: use timestamp (NOW WORKS)
     const startOfMonth = new Date();
     startOfMonth.setDate(1);
     startOfMonth.setHours(0, 0, 0, 0);
@@ -17,7 +16,6 @@ export const getBilling = async (req, res) => {
       timestamp: { $gte: startOfMonth }
     });
 
-    // ✅ STEP 2: Free tier logic
     const FREE_LIMIT = 1000;
     const COST_PER_REQUEST = 0.01;
 
@@ -27,7 +25,6 @@ export const getBilling = async (req, res) => {
       totalCost = (usageCount - FREE_LIMIT) * COST_PER_REQUEST;
     }
 
-    // ✅ STEP 3: Save or update billing
     let billing = await Billing.findOne({ apiKey });
 
     if (billing) {
@@ -48,11 +45,8 @@ export const getBilling = async (req, res) => {
     }
 
     res.json(billing);
-
   } catch (err) {
-    console.error("Billing Error:", err);
-    res.status(500).json({
-      message: "Error fetching billing"
-    });
+    console.error(err);
+    res.status(500).json({ message: "Error fetching billing" });
   }
 };
