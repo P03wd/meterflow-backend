@@ -1,5 +1,5 @@
-import Usage from "../models/Usage.js";
-import Billing from "../models/Billing.js";
+import Usage from "../models/usage.js";
+import Billing from "../models/billing.js";
 
 // 🔥 GET BILLING (AUTO CALCULATED)
 export const getBilling = async (req, res) => {

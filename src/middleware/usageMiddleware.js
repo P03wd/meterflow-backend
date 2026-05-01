@@ -1,4 +1,4 @@
-import Usage from "../models/Usage.js";
+import Usage from "../models/usage.js";
 
 const usageMiddleware = (req, res, next) => {
   const start = Date.now();
